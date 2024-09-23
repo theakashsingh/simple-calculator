@@ -1,54 +1,6 @@
-// import { useState } from "react";
-// import "./App.css";
-
-// const App = () => {
-//   const [inputValue, setInputValue] = useState([]);
-
-//   const handleInputValue = e => {
-//     const value = e.target.value;
-
-//     if (value === "=") {
-//       handleOperation(inputValue);
-//     } else {
-//       // console.log(value);
-//       setInputValue([...inputValue, value]);
-//     }
-//   };
-
-//   let input = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-//   let operators = ["+", "-", "*", "/", "="];
-
-//   const handleOperation = arr => {
-    
-//   };
-//   return (
-//     <div className="main">
-//       <div className="value">{inputValue.map(value => value)}</div>
-//       <div className="input_value">
-//         <div className="input">
-//           {input.map((value, i) => (
-//             <button value={value} onClick={e => handleInputValue(e)} key={i}>
-//               {value}
-//             </button>
-//           ))}
-//         </div>
-//         <div className="operators">
-//           {operators.map((operator, i) => (
-//             <button value={operator} onClick={e => handleInputValue(e)} key={i}>
-//               {operator}
-//             </button>
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default App;
-
-
 import { useState } from "react";
 import "./App.css";
+import { FaBackspace } from "react-icons/fa";
 
 const App = () => {
   const [inputValue, setInputValue] = useState([]);
@@ -70,6 +22,13 @@ const App = () => {
     setError(null); 
   };
 
+  const handleBack = () => {
+    if (inputValue.length > 0) {
+      setInputValue(inputValue.slice(0, -1)); 
+      setError(null); 
+    }
+  };
+
   const input = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const operators = ["+", "-", "*", "/"];
 
@@ -87,10 +46,8 @@ const App = () => {
       // Safely evaluate the expression using Function constructor
       const result = new Function("return " + expression)();
 
-      // Set the result as the new input value
       setInputValue([result.toString()]);
     } catch (err) {
-      // Handle invalid operation or errors
       setError("Invalid operation");
     }
   };
@@ -128,6 +85,9 @@ const App = () => {
             <button value="=" onClick={(e) => handleInputValue(e)} className="btn equal">
               =
             </button>
+            <button onClick={handleBack} className="btn back">
+            <FaBackspace />
+            </button>
           </div>
         </div>
         <button onClick={handleClear} className="btn clear">
@@ -139,3 +99,4 @@ const App = () => {
 };
 
 export default App;
+

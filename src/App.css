@@ -44,15 +44,17 @@
     margin-bottom: 20px;
   }
   
-  .input,
-  .operators {
+  .input {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
   }
   
   .operators {
-    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
   }
   
   .btn {
@@ -85,6 +87,20 @@
   
   .equal:hover {
     background-color: #388e3c;
+  }
+  
+  .back {
+    background-color: #ff9800;
+    color: #fff;
+  }
+  
+  .back:hover {
+    background-color: #f57c00;
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
   }
   
   .clear {
